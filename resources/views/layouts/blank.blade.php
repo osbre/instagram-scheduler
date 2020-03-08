@@ -18,6 +18,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js" integrity="sha256-iM4Yzi/zLj/IshPWMC1IluRxTtRjMqjPGd97TZ9yYpU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.27/bootstrap-native-v4.min.js" integrity="sha256-k5gE8gnbCCVtz/4z2LzbAIpMdH8K1Bjl4cTCjm6SZS8=" crossorigin="anonymous" defer></script>
     @stack('head')
 </head>
 <body>

@@ -12,14 +12,17 @@
                     <div class="form-group">
                         <label for="published_at">Published at</label>
                         <input type="text" name="published_at" value="{{ $post->published_at ?? '' }}" class="form-control" id="published_at">
-                        <script>flatpickr("#published_at", {enableTime: true});</script>
+                        <script>
+                            flatpickr("#published_at", {
+                                enableTime: true,
+                                defaultDate: '{{  date("Y-m-d H:i:00") }}',
+                            });
+                        </script>
                     </div>
 
                     <div class="form-group">
                         <label for="body">Text</label>
-                        <textarea name="body" class="form-control" id="body" rows="10">
-                            {{ $post->body ?? '' }}
-                        </textarea>
+                        <textarea name="body" class="form-control" id="body" rows="10">{{ $post->body ?? '' }}</textarea>
                     </div>
 
                     @include('posts._media')

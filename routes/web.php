@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\{Route, Auth};
 
 Route::view('/', 'welcome');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'PostController@index')->name('home');
 

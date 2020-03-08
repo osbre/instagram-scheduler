@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a1573926405cef7d45091bdfbe86082",
+    "content-hash": "7154d1348240a0bc44ff3a90a69e5f9b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1289,6 +1289,66 @@
                 "processing"
             ],
             "time": "2019-04-03T23:46:42+00:00"
+        },
+        {
+            "name": "mad-web/laravel-enum",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mad-web/laravel-enum.git",
+                "reference": "33be0fc0b965d1067044e78225c7548a8ca844a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mad-web/laravel-enum/zipball/33be0fc0b965d1067044e78225c7548a8ca844a7",
+                "reference": "33be0fc0b965d1067044e78225c7548a8ca844a7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^7.0",
+                "illuminate/support": "^7.0",
+                "illuminate/translation": "^7.0",
+                "myclabs/php-enum": "^1.7.0",
+                "php": "^7.2.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0.0",
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MadWeb\\Enum\\EnumServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MadWeb\\Enum\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "mad-web",
+                    "email": "madweb.dev@gmail.com",
+                    "homepage": "https://github.com/mad-web",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Elegant Enum implementation for Laravel. With make:enum command, ability to casting for Eloquent models and labels translations via lang files.",
+            "homepage": "https://github.com/mad-web/laravel-enum",
+            "keywords": [
+                "enum",
+                "laravel-enum",
+                "mad-web"
+            ],
+            "time": "2020-03-04T14:24:32+00:00"
         },
         {
             "name": "maennchen/zipstream-php",

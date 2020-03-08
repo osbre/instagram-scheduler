@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\PostStatusEnum;
 use App\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -37,8 +38,12 @@ class PublishPost implements ShouldQueue
     {
         $instagram = new InstaLite(
             config('services.instagram.user'),
-            config('services.instagram.password')
+            config('services.instagram.password'),
+            config('services.instagram.proxy')
         );
         $instagram->uploadPhoto($this->post->getFirstMedia()->getPath(), $this->post->body);
+
+        $this->post->status = PostStatusEnum::PUBLISHED();
+        $this->post->save();
     }
 }

@@ -32,7 +32,8 @@ return [
 
     'instagram' => [
         'user' => env('INSTAGRAM_USER'),
-        'password' => env('INSTAGRAM_PASSWORD')
+        'password' => env('INSTAGRAM_PASSWORD'),
+        'proxy' => env('INSTAGRAM_PROXY'),
     ],
 
 ];

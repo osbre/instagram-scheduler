@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PostStatusEnum;
 use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -22,7 +27,9 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $post = (new Post)->fill($request->all());
+        $post = (new Post)->fill(
+            $request->merge(['status' => PostStatusEnum::CREATED()])->all()
+        );
         $post->save();
         $post->addMediaFromRequest('photo')->toMediaCollection();
 

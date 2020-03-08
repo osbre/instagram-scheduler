@@ -8,3 +8,19 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import "~@forevolve/bootstrap-dark/scss/bootstrap-dark";
+
+td.rotate {
+    height:80px;
+    white-space: nowrap;
+    position:relative;
+}
+
+td.rotate > div {
+    transform: rotate(90deg);
+    position:absolute;
+    left:0;
+    right:0;
+    top: 10px;
+    margin:auto;
+
+}
