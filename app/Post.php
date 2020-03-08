@@ -18,10 +18,17 @@ class Post extends Model implements HasMedia
     use HasMediaTrait;
 
     protected $fillable = ['body', 'status', 'published_at'];
-//
-//    protected $casts = [
-//        'status' => PostStatusEnum::class,
-//    ];
 
     protected $dates = ['published_at'];
+
+    public function getStatusColorAttribute()
+    {
+        switch ($this->status) {
+            case PostStatusEnum::PUBLISHED():
+                return 'success';
+                break;
+            default:
+                return 'primary';
+        }
+    }
 }

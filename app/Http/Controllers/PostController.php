@@ -39,17 +39,25 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         return view('posts.edit', [
-            'post' => $post
+            'post' => $post,
+            'is_published' => $post->status === PostStatusEnum::PUBLISHED
         ]);
     }
 
     public function update(Request $request, Post $post)
     {
-        //
+        if ($request->hasFile('photo')) {
+            $post->getFirstMedia()->delete();
+            $post->addMediaFromRequest('photo')->toMediaCollection();
+        }
+        $post->update($request->all());
+        return redirect()->back();
     }
 
     public function destroy(Post $post)
     {
-        //
+        $post->getFirstMedia()->delete();
+        $post->delete();
+        return redirect()->back();
     }
 }

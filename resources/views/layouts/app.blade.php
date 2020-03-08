@@ -13,11 +13,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.create') }}">{{ __('Schedule post') }}</a>
-                        </li>
-                    @endauth
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-dark" href="{{ route('posts.create') }}">{{ __('Schedule post') }}</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

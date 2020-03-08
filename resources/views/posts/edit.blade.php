@@ -6,8 +6,21 @@
             <div class="col-md-8">
                 <h1 class="text-center">{{ __('Schedule post') }}</h1>
 
-                <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+                @isset($is_published)
+                    @if($is_published)
+                        <div class="alert alert-primary" role="alert">
+                            This post has already been published, so it makes no sense to edit it.
+                        </div>
+                    @endif
+                @endisset
+
+                <form action="{{ isset($post) ? route('posts.update', ['post' => $post]) : route('posts.store') }}"
+                      method="post"
+                      enctype="multipart/form-data">
                     @csrf
+                    @isset($post)
+                        @method('put')
+                    @endisset
 
                     <div class="form-group">
                         <label for="published_at">Published at</label>
@@ -15,7 +28,7 @@
                         <script>
                             flatpickr("#published_at", {
                                 enableTime: true,
-                                defaultDate: '{{  date("Y-m-d H:i:00") }}',
+                                defaultDate: '{{  date('Y-m-d H:i:00') }}',
                             });
                         </script>
                     </div>
@@ -24,8 +37,6 @@
                         <label for="body">Text</label>
                         <textarea name="body" class="form-control" id="body" rows="10">{{ $post->body ?? '' }}</textarea>
                     </div>
-
-                    @include('posts._media')
 
                     <div class="form-group">
                         <div class="custom-file">
@@ -40,9 +51,18 @@
                         </div>
                     </div>
 
-                    <div class="btn-group btn-group-lg btn-block">
-                        {{--                                <button type="submit" class="btn btn-dark">Publish now</button>--}}
-                        <button type="submit" class="btn btn-primary">Schedule</button>
+                    <div class="form-group">
+                        @include('posts._media')
+                    </div>
+
+                    <div class="btn-group btn-group-lg btn-block mb-2">
+                        <button type="submit" class="btn btn-primary">
+                            @isset($post)
+                                Update
+                            @else
+                                Schedule
+                            @endisset
+                        </button>
                     </div>
                 </form>
             </div>
