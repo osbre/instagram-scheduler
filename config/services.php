@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'instagram' => [
+        'user' => env('INSTAGRAM_USER'),
+        'password' => env('INSTAGRAM_PASSWORD')
+    ],
+
 ];
