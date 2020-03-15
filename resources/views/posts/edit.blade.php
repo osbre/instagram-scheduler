@@ -14,6 +14,14 @@
                     @endif
                 @endisset
 
+                @if ($errors->any())
+                    <ul class="alert alert-danger list-unstyled">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+
                 <form action="{{ isset($post) ? route('posts.update', ['post' => $post]) : route('posts.store') }}"
                       method="post"
                       enctype="multipart/form-data">
@@ -28,19 +36,27 @@
                         <script>
                             flatpickr("#published_at", {
                                 enableTime: true,
-                                defaultDate: '{{  date('Y-m-d H:i:00') }}',
+                                defaultDate: '{{  $post->published_at ?? date('Y-m-d H:i:00') }}',
                             });
                         </script>
                     </div>
 
                     <div class="form-group">
                         <label for="body">Text</label>
-                        <textarea name="body" class="form-control" id="body" rows="10">{{ $post->body ?? '' }}</textarea>
+                        <textarea name="body" class="form-control" id="body" rows="10">{{ old('body') ?? $post->body ?? '' }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        @include('posts._media', ['id' => 'preview'])
                     </div>
 
                     <div class="form-group">
                         <div class="custom-file">
-                            <input name="photo" type="file" class="custom-file-input" id="photo">
+                            <input name="photo"
+                                   type="file"
+                                   class="custom-file-input"
+                                   onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])"
+                                   id="photo">
                             <label class="custom-file-label bg-dark text-white" for="photo">
                                 Choose
                                 @if(isset($post) && $post->getFirstMedia())
@@ -49,10 +65,6 @@
                                 photo
                             </label>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        @include('posts._media')
                     </div>
 
                     <div class="btn-group btn-group-lg btn-block mb-2">

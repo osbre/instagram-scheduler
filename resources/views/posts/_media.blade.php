@@ -1,7 +1,7 @@
-@isset($post)
-    @if($post->getFirstMedia())
-        <a target="_blank" href="{{ $post->getFirstMedia()->getUrl() }}">
-            <img src="{{ $post->getFirstMedia()->getUrl() }}" class="img-fluid">
-        </a>
-    @endif
-@endisset
+<a target="_blank" href="{{ isset($post) ? $post->getFirstMedia()->getUrl() : '' }}">
+    <img src="{{ isset($post) ? $post->getFirstMedia()->getUrl() : '' }}"
+         @isset($id)
+         id="{{ $id }}"
+         @endisset
+         class="img-fluid">
+</a>

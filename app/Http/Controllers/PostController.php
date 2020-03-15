@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PostStatusEnum;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Post;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -25,10 +26,10 @@ class PostController extends Controller
         return view('posts.edit');
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $post = (new Post)->fill(
-            $request->merge(['status' => PostStatusEnum::CREATED()])->all()
+            $request->merge(['status' => PostStatusEnum::IN_PROGRESS])->all()
         );
         $post->save();
         $post->addMediaFromRequest('photo')->toMediaCollection();
@@ -44,7 +45,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
         if ($request->hasFile('photo')) {
             $post->getFirstMedia()->delete();

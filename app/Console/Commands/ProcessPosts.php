@@ -24,15 +24,13 @@ class ProcessPosts extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
-        $posts = Post::where('published_at', date("Y-m-d H:i:00"))->get();
+        $posts = Post::where('published_at', date('Y-m-d H:i:00'))->get();
 
         $posts->each(function ($post) {
-            PublishPost::dispatchNow($post);
+            PublishPost::dispatch($post);
         });
     }
 }
