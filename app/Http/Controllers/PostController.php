@@ -47,11 +47,11 @@ class PostController extends Controller
 
     public function update(UpdatePostRequest $request, Post $post)
     {
-        if ($request->hasFile('photo')) {
+        $post->update($request->all());
+        if ($request->file('photo') !== null) {
             $post->getFirstMedia()->delete();
             $post->addMediaFromRequest('photo')->toMediaCollection();
         }
-        $post->update($request->all());
         return redirect()->back();
     }
 
